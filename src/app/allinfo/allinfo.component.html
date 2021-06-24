@@ -1,0 +1,187 @@
+<style>
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 25px;
+  }
+  th, td {
+    text-align: left;
+    padding: 5px;
+    border: 1px solid #ddd;
+    width: auto;
+  }
+  tr:nth-child(even) {background-color: #f2f2f2;}
+</style>
+<!--<mat-toolbar color="white" class="expanded-toolbar">-->
+<!--  <span>-->
+<!--    <button mat-button routerLink="/">{{title}}</button>-->
+<!--    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>-->
+<!--  </span>-->
+<!--  <div fxLayout="row" fxShow="false" fxShow.gt-sm>-->
+<!--    <button mat-button routerLink="/game">-->
+<!--      &lt;!&ndash;      <mat-icon>gamepad</mat-icon>&ndash;&gt;-->
+<!--      <img src="assets/umr.png" class="img">-->
+<!--    </button>-->
+<!--  </div>-->
+<!--  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>-->
+<!--    <mat-icon>menu</mat-icon>-->
+<!--  </button>-->
+<!--</mat-toolbar>-->
+<!--<mat-menu x-position="before" #menu="matMenu">-->
+<!--  <button mat-menu-item routerLink="/">-->
+<!--    <mat-icon>home</mat-icon>-->
+<!--    Home-->
+<!--  </button>-->
+<!--  <button mat-menu-item routerLink="/game">-->
+<!--    <mat-icon>bug_report</mat-icon>-->
+<!--    bug-->
+<!--  </button>-->
+<!--</mat-menu>-->
+<!--<div class="toolbar" role="banner">-->
+<!--  <h2>Eligibility</h2>-->
+<!--  <div class="spacer"></div>-->
+<!--  <button mat-button routerLink='/home'>HOME</button>-->
+<!--  <button mat-button routerLink='/'>LOGOUT</button>-->
+<!--</div>-->
+
+<form class="dropdown">
+  <mat-form-field appearance="fill">
+    <mat-label>Funtion</mat-label>
+    <mat-select [(ngModel)]="selectedValue" name="functions">
+      <mat-option *ngFor="let function of functions" [value]="function.value">
+        {{function.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <p> Selected function: {{selectedValue}} </p>
+</form>
+
+<div class="content" role="main">
+  <h2> Click on info needed</h2><h3>Cert Selected is {{certsel}}</h3>
+  <div class="card-container">
+
+    <a class="card" (click)="memberDetails()">
+        <span>Employee and Policy Details</span>
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+    </a>
+<!--    <a class="card" (click)="memberDepNLoc()">-->
+<!--        <span>Dependent Info and Employee Location code</span>-->
+<!--        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>-->
+<!--    </a>-->
+<!--    <a class="card" (click)="pcpNcusRep()">-->
+<!--        <span>Employee PCP and Customer Reporting</span>-->
+<!--        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>-->
+<!--    </a>-->
+  </div>
+</div>
+
+
+<div class="table-content">
+  <ng-container *ngIf="membersel">
+    <pre><b>Employee and Policy Details</b></pre>
+    <mat-grid-list cols="2" rowHeight= 410px>
+      <mat-grid-tile>
+        <table border:none>
+          <tr><th>cert</th><td *ngFor="let col of tvalue3">{{col[0]}}</td></tr>
+          <tr><th>cert sub</th><td *ngFor="let col of tvalue3">{{col[1]}}</td></tr>
+          <tr><th>Assgn  Subscr Nbr</th><td *ngFor="let col of tvalue3">{{col[2]}}</td></tr>
+          <tr><th>Employee ID</th><td *ngFor="let col of tvalue3">{{col[3]}}</td></tr>
+          <tr><th>Print Cntl Cd</th><td *ngFor="let col of tvalue3">{{col[4]}}</td></tr>
+          <tr><th>SSN</th><td *ngFor="let col of tvalue3">{{col[5]}}</td></tr>
+          <tr><th>Atmt Sbmt FSA Dt</th><td *ngFor="let col of tvalue3">{{col[6]}}</td></tr>
+          <tr><th>Atmt Sbmt FSA Ind</th><td *ngFor="let col of tvalue3">{{col[7]}}</td></tr>
+          <tr><th>Cert Card Sprs Ind</th><td *ngFor="let col of tvalue3">{{col[8]}}</td></tr>
+          <tr><th>Clm Nbr</th><td *ngFor="let col of tvalue3">{{col[9]}}</td></tr>
+          <tr><th>Country Name</th><td *ngFor="let col of tvalue3">{{col[10]}}</td></tr>
+          <tr><th>DBC Card Eff Dt</th><td *ngFor="let col of tvalue3">{{col[11]}}</td></tr>
+          <tr><th>DBC Card Ind</th><td *ngFor="let col of tvalue3">{{col[12]}}</td></tr>
+        </table>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <table>
+          <tr><th>Eff Chg Dt</th><td *ngFor="let col of tvalue3">{{col[13]}}</td></tr>
+          <tr><th>Email ID</th><td *ngFor="let col of tvalue3">{{col[14]}}</td></tr>
+          <tr><th>Grp Loc Cd</th><td *ngFor="let col of tvalue3">{{col[15]}}</td></tr>
+          <tr><th>Grp Nbr</th><td *ngFor="let col of tvalue3">{{col[16]}}</td></tr>
+          <tr><th>Id Card As Of Month</th><td *ngFor="let col of tvalue3">{{col[17]}}</td></tr>
+          <tr><th>Id Card Req Ind</th><td *ngFor="let col of tvalue3">{{col[18]}}</td></tr>
+          <tr><th>First Name</th><td *ngFor="let col of tvalue3">{{col[19]}}</td></tr>
+          <tr><th>DOB</th><td *ngFor="let col of tvalue3">{{col[20]}}</td></tr>
+          <tr><th>Death date</th><td *ngFor="let col of tvalue3">{{col[21]}}</td></tr>
+          <tr><th>Last Name</th><td *ngFor="let col of tvalue3">{{col[22]}}</td></tr>
+          <tr><th>Middle initial</th><td *ngFor="let col of tvalue3">{{col[23]}}</td></tr>
+          <tr><th>Qual Name</th><td *ngFor="let col of tvalue3">{{col[24]}}</td></tr>
+          <tr><th>Sex Cd</th><td *ngFor="let col of tvalue3">{{col[25]}}</td></tr>
+        </table>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <table>
+        <tr><th>Lang Op Ind</th><td *ngFor="let col of tvalue3">{{col[26]}}</td></tr>
+        <tr><th>Mail Address</th><td *ngFor="let col of tvalue3">{{col[27]}}</td></tr>
+        <tr><th>Mail Address2</th><td *ngFor="let col of tvalue3">{{col[28]}}</td></tr>
+        <tr><th>City</th><td *ngFor="let col of tvalue3">{{col[29]}}</td></tr>
+        <tr><th>State Code</th><td *ngFor="let col of tvalue3">{{col[30]}}</td></tr>
+        <tr><th>CCN</th><td *ngFor="let col of tvalue3">{{col[31]}}</td></tr>
+        <tr><th>MDCR Plan Cd</th><td *ngFor="let col of tvalue3">{{col[32]}}</td></tr>
+        <tr><th>Marital Status</th><td *ngFor="let col of tvalue3">{{col[33]}}</td></tr>
+        <tr><th>Origin Health benefit Dt</th><td *ngFor="let col of tvalue3">{{col[34]}}</td></tr>
+        <tr><th>Original work date</th><td *ngFor="let col of tvalue3">{{col[35]}}</td></tr>
+        <tr><th>Other Name Ind</th><td *ngFor="let col of tvalue3">{{col[36]}}</td></tr>
+        <tr><th>Postal Code</th><td *ngFor="let col of tvalue3">{{col[37]}}</td></tr>
+        <tr><th>Retire Date</th><td *ngFor="let col of tvalue3">{{col[38]}}</td></tr>
+      </table>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <table>
+          <tr><th>SSN Exec Ind</th><td *ngFor="let col of tvalue3">{{col[39]}}</td></tr>
+          <tr><th>Update Dt</th><td *ngFor="let col of tvalue3">{{col[40]}}</td></tr>
+          <tr><th>Update User ID</th><td *ngFor="let col of tvalue3">{{col[41]}}</td></tr>
+          <tr><th>VRFC Birth Ind</th><td *ngFor="let col of tvalue3">{{col[42]}}</td></tr>
+          <tr><th>Work State Code</th><td *ngFor="let col of tvalue3">{{col[43]}}</td></tr>
+          <tr><th>Work Status Code</th><td *ngFor="let col of tvalue3">{{col[44]}}</td></tr>
+          <tr><th>XREF Cert Nbr</th><td *ngFor="let col of tvalue3">{{col[45]}}</td></tr>
+          <tr><th>XREF Cert Sub</th><td *ngFor="let col of tvalue3">{{col[46]}}</td></tr>
+          <tr><th>XREF Reason Cd</th><td *ngFor="let col of tvalue3">{{col[47]}}</td></tr>
+          <tr><th>Group Name</th><td *ngFor="let col of tvalue3">{{col[48]}}</td></tr>
+          <tr><th>Rpt Type Cd</th><td *ngFor="let col of tvalue3">{{col[49]}}</td></tr>
+          <tr><th>Rpt Loc Cd</th><td *ngFor="let col of tvalue3">{{col[50]}}</td></tr>
+        </table>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <br>
+      <table>
+        <tr>
+          <th *ngFor = "let column of header1">{{column}}</th>
+        </tr>
+        <tr *ngFor = "let row of tvalue2">
+          <td *ngFor = "let column of row">{{column}}</td>
+        </tr>
+      </table>
+  </ng-container>
+  <ng-container *ngIf="memberdeploc">
+    <pre><b>Dependent Info and Employee Location code</b></pre>
+    <table>
+      <tr>
+        <th *ngFor = "let column of header2">{{column}}</th>
+      </tr>
+      <tr *ngFor = "let row of tvalue">
+        <td *ngFor = "let column of row">{{column}}</td>
+      </tr>
+    </table>
+  </ng-container>
+  <ng-container *ngIf="pcpcrinfo">
+    <pre><b>Employee PCP and Customer Reporting</b></pre>
+    <table>
+      <tr>
+        <th *ngFor = "let column of header3">{{column}}</th>
+      </tr>
+      <tr *ngFor = "let row of tvalue1">
+        <td *ngFor = "let column of row">{{column}}</td>
+      </tr>
+    </table>
+  </ng-container>
+</div>
+<br><br>
+
+
+<router-outlet></router-outlet>

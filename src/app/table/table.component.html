@@ -1,0 +1,601 @@
+<!--This is the angular coding for dialog box.-->
+
+<!--<mat-toolbar color="primary" class="mat-elevation-z3">-->
+<!--  I <mat-icon>favorite</mat-icon> dialogs-->
+<!--</mat-toolbar>-->
+<!--<br>-->
+<!--<button mat-button color="primary" (click)="openDialogWithTemplateRef(myDialog)">Open dialog</button>-->
+<!--<button mat-button color="accent" (click)="openDialogWithoutRef()">Open second dialog</button>-->
+<!--<p><small>See the source code for more info</small></p>-->
+<!-- Dialog template -->
+<ng-template #myDialog>
+  <h2 matDialogTitle>Dialog!</h2>
+  <mat-dialog-content [(ngModel)]="selectedValue">
+    <p *ngIf="selectedValue == 'Add'">The Client has been ... Added<br><code>need to work on If else condition to get the desired statement here!</code></p>
+    <p *ngIf="selectedValue == 'Update'">The Client has been ... Updated<br><code>need to work on If else condition to get the desired statement here!</code></p>
+    <p *ngIf="selectedValue == 'Delete'">The Client has been ... Deleted<br><code>need to work on If else condition to get the desired statement here!</code></p>
+    <p *ngIf="selectedValue == 'Select'">The Client has been ... Selected<br><code>need to work on If else condition to get the desired statement here!</code></p>
+    <p *ngIf="selectedValue == 'NONE'"><code>Please select any value in Function</code></p>
+
+<!--      <code>ng-template</code>! Amazing, right?</p>-->
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button matDialogClose color="primary">Dismiss</button>
+  </mat-dialog-actions>
+</ng-template>
+<!-- Dialog template #2 -->
+<!--<ng-template #secondDialog>-->
+<!--  <h2 matDialogTitle>Lovely dialog!</h2>-->
+<!--  <mat-dialog-content>-->
+<!--    <p>The content of this dialog came from an <code>ng-template</code>! Mind-blowing, right? (However, this wasn't passed in to a method while the other one was)</p>-->
+<!--    <mat-slide-toggle>I'm a slide toggle!</mat-slide-toggle>-->
+<!--    <mat-checkbox>  I'm a checkbox!</mat-checkbox>-->
+<!--  </mat-dialog-content>-->
+<!--  <mat-dialog-actions align="end">-->
+<!--    <button mat-button matDialogClose color="primary">I <mat-icon class="inline-icon">favorite</mat-icon> dialogs!</button>-->
+<!--  </mat-dialog-actions>-->
+<!--</ng-template>-->
+
+
+<!--<form id="dropdown" align="left">-->
+<!--  <mat-form-field appearance="fill">-->
+<!--    <mat-label>Function</mat-label>-->
+<!--    <mat-select [(ngModel)]="selectedValue" name="functions">-->
+<!--      <mat-option *ngFor="let function of functions" [value]="function.value">-->
+<!--        {{function.viewValue}}-->
+<!--      </mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+<!--&lt;!&ndash;  <div *ngIf="{{mProgressBar}} : 'no'">&ndash;&gt;-->
+<!--&lt;!&ndash;    <button mat-raised-button color="primary" class="same">Submit</button>&ndash;&gt;-->
+<!--&lt;!&ndash;  </div>&ndash;&gt;-->
+<!--  <button mat-raised-button color="primary" class="same">Submit</button>-->
+<!--  <p><br>Selected function: {{selectedValue}} </p>-->
+<!--</form>-->
+
+<form id="dropdown" align="left">
+<mat-form-field appearance="outline">
+  <mat-label>Function</mat-label>
+  <mat-select [(ngModel)]="selectedValue" name="functions">
+    <mat-option *ngFor="let function of functions" [value]="function.value">
+      {{function.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+  <p>Selected function: {{selectedValue}} </p>
+</form>
+
+<form [name]="userInfo" [formGroup]="userInfo" align="right">
+<button mat-raised-button [disabled]="!userInfo.valid" color="primary" class="same" (click)="openDialogWithTemplateRef(myDialog)">Submit</button>
+</form>
+
+
+<mat-paginator #paginator
+        [pageSize]="21"
+        [pageSizeOptions]="[21, 42, 63]">
+</mat-paginator>
+
+<!--<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" align="right">-->
+
+<!--  &lt;!&ndash;- Note that these columns can be defined in any order.-->
+<!--        The actual rendered columns are set as a property on the row definition" &ndash;&gt;-->
+
+<!--  &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="Information">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Information </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.info}} </td>-->
+<!--  </ng-container>-->
+
+<!--  &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="Data">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Data </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.data}} </td>-->
+<!--  </ng-container>-->
+
+<!--  &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="weight">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Weight </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
+<!--  </ng-container>-->
+
+<!--  &lt;!&ndash; Symbol Column &ndash;&gt;-->
+<!--  <ng-container matColumnDef="symbol">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Symbol </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
+<!--  </ng-container>-->
+
+<!--  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--</table>-->
+
+<!-- <form [name]="userInfo" [formGroup]="userInfo"> -->
+<table id="test" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<!--  <p> Selected function: {{element.data}} </p>-->
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Information">
+    <th mat-header-cell *matHeaderCellDef> Information </th>
+    <td mat-cell *matCellDef="let element"> {{element.info}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="Data">
+    <th mat-header-cell *matHeaderCellDef> Data </th>
+    <td mat-cell *matCellDef="let element">
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+        <mat-form-field appearance="outline" *ngIf="element.info == 'UPDATE USER ID'">
+          <mat-label>{{element.message}}</mat-label>
+          <input matInput formControlName="val0" [value]="element.data" [(ngModel)]="element.data">
+          <!--          equal to {{element.weight}}-->
+          <!--        *ngIf="element.info == 'CLIENT CODE'">-->
+                    <mat-error *ngIf="userInfo.get('val0').hasError('required')">{{element.info}} field is required</mat-error>
+                    <mat-error *ngIf="userInfo.get('val0').hasError('pattern')">{{element.info}} must start with RAU****</mat-error>
+                    <mat-error *ngIf="userInfo.get('val0').hasError('minlength')">{{element.info}} must be 7 bytes</mat-error>
+                    <mat-error *ngIf="userInfo.get('val0').hasError('maxlength')">{{element.info}} must be 7 bytes</mat-error>
+        </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'CLIENT CODE'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val1" [value]="element.data" [(ngModel)]="element.data">
+<!--          equal to {{element.weight}}-->
+<!--        *ngIf="element.info == 'CLIENT CODE'">-->
+<!--          <mat-error *ngIf="userInfo.get('val1').hasError('required')">This Field is required</mat-error>-->
+          <mat-error *ngIf="userInfo.get('val1').hasError('pattern')">{{element.info}} must be numbers only</mat-error>
+          <mat-error *ngIf="userInfo.get('val1').hasError('minlength')">{{element.info}} must be 4 bytes</mat-error>
+          <mat-error *ngIf="userInfo.get('val1').hasError('maxlength')">{{element.info}} must be 4 bytes</mat-error>
+      </mat-form-field>
+    </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'CLIENT NAME'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val2" [value]="element.data" [(ngModel)]="element.data">
+
+<!--        <mat-error *ngIf="userInfo.get('val2').hasError('required')">This Field is required</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val2').hasError('pattern')">{{element.info}} must be Alphabetic format</mat-error>
+        <mat-error *ngIf="userInfo.get('val2').hasError('maxlength')">{{element.info}} must be within 30 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'GROUP NUMBER'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val3" [value]="element.data" [(ngModel)]="element.data">
+
+<!--        <mat-error *ngIf="userInfo.get('val3').hasError('required')">This Field is required</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val3').hasError('pattern')">{{element.info}} must be numbers only</mat-error>
+        <mat-error *ngIf="userInfo.get('val3').hasError('minlength')">{{element.info}} must be 8 bytes</mat-error>
+        <mat-error *ngIf="userInfo.get('val3').hasError('maxlength')">{{element.info}} must be 8 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'FSA HEALTH/HRA POLICY NUMBER'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val4" [value]="element.data" [(ngModel)]="element.data">
+
+<!--        <mat-error *ngIf="userInfo.get('val4').hasError('required')">This Field is required</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val4').hasError('pattern')">{{element.info}} must be numbers only</mat-error>
+        <mat-error *ngIf="userInfo.get('val4').hasError('minlength')">{{element.info}} must be 12 bytes</mat-error>
+        <mat-error *ngIf="userInfo.get('val4').hasError('maxlength')">{{element.info}} must be 12 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'FSA DEPENDENT/HSA POLICY NUMBER'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val5" [value]="element.data" [(ngModel)]="element.data">
+
+<!--        <mat-error *ngIf="userInfo.get('val5').hasError('required')">This Field is required</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val5').hasError('pattern')">{{element.info}} must be numbers only</mat-error>
+        <mat-error *ngIf="userInfo.get('val5').hasError('minlength')">{{element.info}} must be 12 bytes</mat-error>
+        <mat-error *ngIf="userInfo.get('val5').hasError('maxlength')">{{element.info}} must be 12 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'FSA HEALTH LTD/2ND HRA/HSA POL'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val6" [value]="element.data" [(ngModel)]="element.data">
+
+<!--        <mat-error *ngIf="userInfo.get('val6').hasError('required')">This Field is required</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val6').hasError('pattern')">{{element.info}} must be numbers only</mat-error>
+        <mat-error *ngIf="userInfo.get('val6').hasError('minlength')">{{element.info}} must be 12 bytes</mat-error>
+        <mat-error *ngIf="userInfo.get('val6').hasError('maxlength')">{{element.info}} must be 12 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'EFFECTIVE DATE'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val7" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val7').hasError('pattern')">{{element.info}} must be valid DATE with 'YYYY-MM-DD' format</mat-error>
+        <mat-error *ngIf="userInfo.get('val7').hasError('minlength')">{{element.info}} must be 10 bytes</mat-error>
+        <mat-error *ngIf="userInfo.get('val7').hasError('maxlength')">{{element.info}} must be 10 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'TERMINATION DATE'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val8" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val8').hasError('pattern')">{{element.info}} must be valid DATE with 'YYYY-MM-DD' format</mat-error>
+        <mat-error *ngIf="userInfo.get('val8').hasError('minlength')">{{element.info}} must be 10 bytes</mat-error>
+        <mat-error *ngIf="userInfo.get('val8').hasError('maxlength')">{{element.info}} must be 10 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'FSA REIMBURSEMENT IND'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val9" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val9').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+        <mat-error *ngIf="userInfo.get('val9').hasError('minlength')">{{element.info}} must be 1 byte</mat-error>
+        <mat-error *ngIf="userInfo.get('val9').hasError('maxlength')">{{element.info}} must be 1 byte</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'ELECT FOR ALL IND'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val10" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val10').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+        <mat-error *ngIf="userInfo.get('val10').hasError('minlength')">{{element.info}} must be 1 byte</mat-error>
+        <mat-error *ngIf="userInfo.get('val10').hasError('maxlength')">{{element.info}} must be 1 byte</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'HEALTH/HRA ANNUAL AMOUNT'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val11" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val11').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+<!--        <mat-error *ngIf="userInfo.get('val11').hasError('minlength')">{{element.info}} must be 6 bytes</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val11').hasError('maxlength')">{{element.info}} must be 6 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+        <mat-form-field appearance="outline" *ngIf="element.info == 'HEALTH MIN AMT'">
+          <mat-label>{{element.message}}</mat-label>
+          <input matInput formControlName="val11_a" [value]="element.data" [(ngModel)]="element.data">
+
+          <mat-error *ngIf="userInfo.get('val11_a').hasError('pattern')">{{element.info}} must be within {{element.message}}</mat-error>
+          <!--        <mat-error *ngIf="userInfo.get('val11_a').hasError('minlength')">{{element.info}} must be 6 bytes</mat-error>-->
+          <mat-error *ngIf="userInfo.get('val11_a').hasError('maxlength')">{{element.info}} must be 9 bytes</mat-error>
+        </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'DEPENDENT/HSA ANNUAL AMOUNT'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val12" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val12').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+<!--                <mat-error *ngIf="userInfo.get('val12').hasError('minlength')">{{element.info}} must be 6 bytes</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val12').hasError('maxlength')">{{element.info}} must be 6 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+        <mat-form-field appearance="outline" *ngIf="element.info == 'DEP MIN AMT'">
+          <mat-label>{{element.message}}</mat-label>
+          <input matInput formControlName="val12_a" [value]="element.data" [(ngModel)]="element.data">
+
+          <mat-error *ngIf="userInfo.get('val12_a').hasError('pattern')">{{element.info}} must be within {{element.message}}</mat-error>
+          <!--                <mat-error *ngIf="userInfo.get('val12_a').hasError('minlength')">{{element.info}} must be 6 bytes</mat-error>-->
+          <mat-error *ngIf="userInfo.get('val12_a').hasError('maxlength')">{{element.info}} must be 9 bytes</mat-error>
+        </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'ANNUAL ELECTIONS USED FROM FILE'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val13" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val13').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+        <mat-error *ngIf="userInfo.get('val13').hasError('minlength')">{{element.info}} must be 1 byte</mat-error>
+        <mat-error *ngIf="userInfo.get('val13').hasError('maxlength')">{{element.info}} must be 1 byte</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+        <mat-form-field appearance="outline" *ngIf="element.info == 'WEX TERM DT'">
+          <mat-label>{{element.message}}</mat-label>
+          <input matInput formControlName="val13_a" [value]="element.data" [(ngModel)]="element.data">
+
+          <mat-error *ngIf="userInfo.get('val13_a').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+          <mat-error *ngIf="userInfo.get('val13_a').hasError('minlength')">{{element.info}} must be 1 byte</mat-error>
+          <mat-error *ngIf="userInfo.get('val13_a').hasError('maxlength')">{{element.info}} must be 1 byte</mat-error>
+        </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'USE EFT INFO FROM FILE'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val14" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val14').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+        <mat-error *ngIf="userInfo.get('val14').hasError('minlength')">{{element.info}} must be 1 byte</mat-error>
+        <mat-error *ngIf="userInfo.get('val14').hasError('maxlength')">{{element.info}} must be 1 byte</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'DECIMAL / NON-DECIMAL'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val15" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val15').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+        <mat-error *ngIf="userInfo.get('val15').hasError('minlength')">{{element.info}} must be 1 byte</mat-error>
+        <mat-error *ngIf="userInfo.get('val15').hasError('maxlength')">{{element.info}} must be 1 byte</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'NAME/ADDR/LOC MAX NBR CHANGES'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val16" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val16').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+<!--        <mat-error *ngIf="userInfo.get('val16').hasError('minlength')">{{element.info}} must be 6 bytes</mat-error>-->
+        <mat-error *ngIf="userInfo.get('val16').hasError('maxlength')">{{element.info}} must be within 6 bytes</mat-error>
+      </mat-form-field>
+      </form>
+
+      <form [name]="userInfo" [formGroup]="userInfo">
+      <mat-form-field appearance="outline" *ngIf="element.info == 'USE EOM FOR EE TERM DATE'">
+        <mat-label>{{element.message}}</mat-label>
+        <input matInput formControlName="val17" [value]="element.data" [(ngModel)]="element.data">
+
+        <mat-error *ngIf="userInfo.get('val17').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>
+        <mat-error *ngIf="userInfo.get('val17').hasError('minlength')">{{element.info}} must be 1 byte</mat-error>
+        <mat-error *ngIf="userInfo.get('val17').hasError('maxlength')">{{element.info}} must be 1 byte</mat-error>
+      </mat-form-field>
+      </form>
+
+    </td>
+  </ng-container>
+
+<!--  error messages-->
+
+<!--  <ng-container matColumnDef="errorMessage">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Error Message </th>-->
+<!--    <td mat-cell *matCellDef="let element">-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'USER ID'">-->
+<!--          <input matInput hidden="true" formControlName="val0" [value]="element.data" [(ngModel)]="element.data">-->
+<!--          &lt;!&ndash;          equal to {{element.weight}}&ndash;&gt;-->
+<!--          &lt;!&ndash;        *ngIf="element.info == 'CLIENT CODE'">&ndash;&gt;-->
+<!--                    <mat-error *ngIf="userInfo.get('val0').hasError('required')">This Field is required</mat-error>-->
+<!--                    <mat-error *ngIf="userInfo.get('val0').hasError('pattern')">Client Code must be numeric</mat-error>-->
+<!--                    <mat-error *ngIf="userInfo.get('val0').hasError('minlength')">Client Code must be 7 digits</mat-error>-->
+<!--                    <mat-error *ngIf="userInfo.get('val0').hasError('maxlength')">Client Code must be 7 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'CLIENT CODE'">-->
+<!--          <input matInput hidden="true" formControlName="val" [(ngModel)]="element.data">-->
+<!--          &lt;!&ndash;          equal to {{element.weight}}&ndash;&gt;-->
+<!--          &lt;!&ndash;        *ngIf="element.info == 'CLIENT CODE'">&ndash;&gt;-->
+<!--          &lt;!&ndash;          <mat-error *ngIf="userInfo.get('val1').hasError('required')">This Field is required</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val1').hasError('pattern')">Client Code must be numeric</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val1').hasError('minlength')">Client Code must be 4 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val1').hasError('maxlength')">Client Code must be 4 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'CLIENT NAME'">-->
+<!--          <input matInput hidden="true" formControlName="val2" [(ngModel)]="element.data">-->
+
+<!--          &lt;!&ndash;        <mat-error *ngIf="userInfo.get('val2').hasError('required')">This Field is required</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val2').hasError('pattern')">Client Code must be numeric</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val2').hasError('maxlength')">Client Code must be 30 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'GROUP NUMBER'">-->
+<!--          <input matInput hidden="true" formControlName="val3" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          &lt;!&ndash;        <mat-error *ngIf="userInfo.get('val3').hasError('required')">This Field is required</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val3').hasError('pattern')">Client Code must be numeric</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val3').hasError('maxlength')">Client Code must be 8 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'FSA HEALTH/HRA POLICY NUMBER'">-->
+<!--          <input matInput hidden="true" formControlName="val4" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          &lt;!&ndash;        <mat-error *ngIf="userInfo.get('val4').hasError('required')">This Field is required</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val4').hasError('pattern')">Client Code must be numeric</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val4').hasError('minlength')">Client Code must be 12 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val4').hasError('maxlength')">Client Code must be 12 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'FSA DEPENDENT/HSA POLICY NUMBER'">-->
+<!--          <input matInput hidden="true" formControlName="val5" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          &lt;!&ndash;        <mat-error *ngIf="userInfo.get('val5').hasError('required')">This Field is required</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val5').hasError('pattern')">Client Code must be numeric</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val5').hasError('minlength')">Client Code must be 12 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val5').hasError('maxlength')">Client Code must be 12 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'FSA HEALTH LTD/2ND HRA/HSA POL'">-->
+<!--          <input matInput hidden="true" formControlName="val6" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          &lt;!&ndash;        <mat-error *ngIf="userInfo.get('val6').hasError('required')">This Field is required</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val6').hasError('pattern')">Client Code must be numeric</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val6').hasError('minlength')">Client Code must be 12 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val6').hasError('maxlength')">Client Code must be 12 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'EFFECTIVE DATE'">-->
+<!--          <input matInput hidden="true" formControlName="val7" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val7').hasError('pattern')">{{element.info}} must be YYYY-MM-DD format</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val7').hasError('minlength')">Client Code must be 10 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val7').hasError('maxlength')">Client Code must be 10 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'TERMINATION DATE'">-->
+<!--          <input matInput hidden="true" formControlName="val8" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val8').hasError('pattern')">{{element.info}} must be YYYY-MM-DD format</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val8').hasError('minlength')">Client Code must be 10 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val8').hasError('maxlength')">Client Code must be 10 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'FSA REIMBURSEMENT IND'">-->
+<!--          <input matInput hidden="true" formControlName="val9" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val9').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val9').hasError('minlength')">Client Code must be 1 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val9').hasError('maxlength')">Client Code must be 1 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'ELECT FOR ALL IND'">-->
+<!--          <input matInput hidden="true" formControlName="val10" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val10').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val10').hasError('minlength')">Client Code must be 1 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val10').hasError('maxlength')">Client Code must be 1 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'HEALTH/HRA ANNUAL AMOUNT'">-->
+<!--          <input matInput hidden="true" formControlName="val11" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val11').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          &lt;!&ndash;        <mat-error *ngIf="userInfo.get('val11').hasError('minlength')">Client Code must be 6 digits</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val11').hasError('maxlength')">Client Code must be 6 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'DEPENDENT/HSA ANNUAL AMOUNT'">-->
+<!--          <input matInput hidden="true" formControlName="val12" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val12').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          &lt;!&ndash;        <mat-error *ngIf="userInfo.get('val12').hasError('minlength')">Client Code must be 6 digits</mat-error>&ndash;&gt;-->
+<!--          <mat-error *ngIf="userInfo.get('val12').hasError('maxlength')">Client Code must be 6 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'ANNUAL ELECTIONS USED FROM FILE'">-->
+<!--          <input matInput hidden="true" formControlName="val13" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val13').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val13').hasError('minlength')">Client Code must be 1 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val13').hasError('maxlength')">Client Code must be 1 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'USE EFT INFO FROM FILE'">-->
+<!--          <input matInput hidden="true" formControlName="val14" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val14').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val14').hasError('minlength')">Client Code must be 1 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val14').hasError('maxlength')">Client Code must be 1 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'DECIMAL / NON-DECIMAL'">-->
+<!--          <input matInput hidden="true" formControlName="val15" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val15').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val15').hasError('minlength')">Client Code must be 1 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val15').hasError('maxlength')">Client Code must be 1 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'NAME/ADDR/LOC MAX NBR CHANGES'">-->
+<!--          <input matInput hidden="true" formControlName="val16" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val16').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val16').hasError('minlength')">Client Code must be 2 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val16').hasError('maxlength')">Client Code must be 2 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--      <form class="errorMessage" [name]="userInfo" [formGroup]="userInfo">-->
+<!--        <mat-form-field *ngIf="element.info == 'USE EOM FOR EE TERM DATE'">-->
+<!--          <input matInput hidden="true" formControlName="val17" [value]="element.data" [(ngModel)]="element.data">-->
+
+<!--          <mat-error *ngIf="userInfo.get('val17').hasError('pattern')">{{element.info}} must be {{element.message}}</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val17').hasError('minlength')">Client Code must be 1 digits</mat-error>-->
+<!--          <mat-error *ngIf="userInfo.get('val17').hasError('maxlength')">Client Code must be 1 digits</mat-error>-->
+<!--        </mat-form-field>-->
+<!--      </form>-->
+
+<!--    </td>-->
+<!--  </ng-container>-->
+
+
+<!--  Original code-->
+
+<!--  <ng-container matColumnDef="Data">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Data </th>-->
+<!--    <td mat-cell *matCellDef="let element">-->
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>{{element.weight}}</mat-label>-->
+<!--        <input matInput [value]="element.data" [(ngModel)]="element.data">-->
+<!--      </mat-form-field>-->
+<!--      &lt;!&ndash;      {{element.data}} &ndash;&gt;-->
+<!--    </td>-->
+<!--  </ng-container>-->
+
+  <!-- Weight Column -->
+<!--  <ng-container matColumnDef="weight">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Weight </th>-->
+<!--    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
+<!--  </ng-container>-->
+
+  <!-- Symbol Column -->
+<!--  <ng-container matColumnDef="symbol">-->
+<!--    <th mat-header-cell *matHeaderCellDef> Symbol </th>-->
+<!--    <td mat-cell *matCellDef="let element">-->
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Symbol {{element.weight}}</mat-label>-->
+<!--        <input matInput [value]="element.symbol" [(ngModel)]="element.symbol">-->
+<!--      </mat-form-field>-->
+<!--    </td>-->
+<!--&lt;!&ndash;      {{element.symbol}} </td>&ndash;&gt;-->
+<!--  </ng-container>-->
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<!-- </form> -->

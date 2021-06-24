@@ -1,0 +1,28 @@
+<mat-toolbar color="white" class="expanded-toolbar">
+  <span>
+    <button mat-button routerLink="/hom">{{title}}</button>
+<!--    <button mat-button routerLink="/"><mat-icon>home</mat-icon></button>-->
+  </span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button mat-button routerLink="/game">
+<!--      <mat-icon>gamepad</mat-icon>-->
+      <img src="assets/umr.png" class="img">
+    </button>
+  </div>
+  <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/">
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+  <button mat-menu-item routerLink="/table">
+    <mat-icon>bug_report</mat-icon>
+    bug
+  </button>
+</mat-menu>
+<div class="content-body">
+  <router-outlet></router-outlet>
+</div>

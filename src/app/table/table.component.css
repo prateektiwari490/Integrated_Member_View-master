@@ -1,0 +1,57 @@
+.same{
+  width: 10%;
+  top: -80px;
+  right: 800px;
+  position: relative;
+  margin-left:50px;
+}
+
+mat-paginator {
+  position: right;
+  text-align: right;
+   margin: auto;
+   border: 1.5px solid;
+   border-color: #239B56;
+   border-radius: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+div {
+  height: 0%;
+  padding: 0px;
+}
+
+#test ::ng-deep .mat-form-field-appearance-outline {
+  width: 400px;
+  height:95px;
+  top: 5px;
+  bottom: 10px;
+}
+#test ::ng-deep .mat-header-cell {
+  font-size: large;
+  font-style: oblique;
+  color: green;
+  top: 5px;
+  bottom: 1px;
+}
+
+#test {
+  border: 1.5px solid;
+  border-color: #239B56;
+}
+
+#dropdown ::ng-deep .mat-form-field-appearance-outline {
+  width: 20%;
+  top: 15px;
+  position: relative;
+  color:white;
+}
+
+.errorMessage ::ng-deep .mat-form-field {
+  width: 250px;
+  height: 0px;
+  top: -25px;
+}
